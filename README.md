@@ -2,9 +2,9 @@
 
 App that receives weather data from https://openweathermap.org/api
 
-![Alt text](/relative/Screenshots/scrn1.png?raw=true "Weather forecast in Moscow")
+![Alt text](https://github.com/thundernorain/weather_forecast/blob/master/Screenshots/scrn1.jpg?raw=true "Weather forecast in Moscow")
 
-![Alt text](/relative/Screenshots/scrn2.png?raw=true "Weather forecast in New york")
+![Alt text](https://github.com/thundernorain/weather_forecast/blob/master/Screenshots/scrn2.jpg?raw=true "Weather forecast in New york")
 
 ## Getting Started
 
