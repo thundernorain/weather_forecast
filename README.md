@@ -1,8 +1,8 @@
 # weather_forecast
 
 App that receives weather data from https://openweathermap.org/api
-![alt text](Screenshots/scrn1.png "Weather forecast in Moscow")
-![alt text](Screenshots/scrn2.png "Weather forecast in New york")
+![alt text](/relative/Screenshots/scrn1.png "Weather forecast in Moscow")
+![alt text](/relative/Screenshots/scrn2.png "Weather forecast in New york")
 
 ## Getting Started
 
