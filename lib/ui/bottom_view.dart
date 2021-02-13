@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:weather_forecast/model/weather_forecast_five_days.dart';
 import 'package:weather_forecast/util/util.dart';
 
@@ -20,7 +22,7 @@ class BottomView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, int index) => SizedBox(width: 8),
+              separatorBuilder: (context, int index) => SizedBox(width: 12),
               itemCount: snapshot.data.list.length,
               itemBuilder: (context, index) => ClipRRect(
                   borderRadius: BorderRadius.circular(10),
@@ -28,7 +30,13 @@ class BottomView extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 3,
                     height: 240,
                     child: WeatherCard(snapshot: snapshot, index: index),
-                    decoration: BoxDecoration(color: Colors.black38),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [getWeatherCardColor(snapshot, index), Colors.white],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight
+                      )
+                    ),
                   )),
             ),
           )
@@ -36,6 +44,17 @@ class BottomView extends StatelessWidget {
       ),
     );
   }
+}
+
+Color getWeatherCardColor(AsyncSnapshot<WeatherForecastFD> snapshot, int index) {
+  String weather = snapshot.data.list[index].weather[0].description.toLowerCase();
+  Color color = Colors.black38;
+
+  if(weather.contains("snow")) color = Colors.lightBlue[100];
+  else if(weather.contains("clouds")) color = Colors.blue;
+  else if(weather.contains("sky")) color = Colors.orange;
+
+  return color;
 }
 
 class WeatherCard extends StatelessWidget {
@@ -67,8 +86,22 @@ class WeatherCard extends StatelessWidget {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               Text("${snapshot.data.list[index].weather[0].description}",
                   style: TextStyle(fontSize: 20)),
-              Text("W:  ${snapshot.data.list[index].wind.speed} m/s"),
-              Text("H: ${snapshot.data.list[0].main.humidity}%")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(FontAwesomeIcons.wind),
+                  SizedBox(width: 7),
+                  Text("${snapshot.data.list[index].wind.speed} m/s"),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(FontAwesomeIcons.water),
+                  SizedBox(width: 7),
+                  Text("${snapshot.data.list[index].main.humidity}%"),
+                ],
+              )
             ],
           ),
         ),

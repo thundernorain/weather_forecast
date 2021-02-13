@@ -71,7 +71,7 @@ class _MainHomeState extends State<MainHome> {
     return Column(
       children: [
         MiddleView(snapshot: snapshot),
-        SizedBox(height: 80),
+        SizedBox(height: 20),
         BottomView(snapshot: snapshot)
       ],
     );
